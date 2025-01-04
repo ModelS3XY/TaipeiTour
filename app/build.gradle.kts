@@ -43,6 +43,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.legacy.support.v4)
     val lifecycle_version = "2.8.7"
     val nav_version = "2.8.4"
 
@@ -78,4 +79,5 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.11.0")
     implementation("io.coil-kt.coil3:coil-compose:3.0.4")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
 }

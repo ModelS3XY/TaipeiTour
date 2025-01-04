@@ -16,7 +16,7 @@ data class Spot(
     val files: List<Any>,
     val friendly: List<Friendly>,
     val id: Int,
-    val images: List<Image>,
+    val images: List<SpotImage>,
     val introduction: String,
     val links: List<Link>,
     val modified: String,
@@ -47,7 +47,7 @@ data class Friendly(
     val name: String
 )
 
-data class Image(
+data class SpotImage(
     val ext: String,
     val src: String,
     val subject: String

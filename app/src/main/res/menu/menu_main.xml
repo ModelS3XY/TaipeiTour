@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_zh_tw"
+        android:title="繁體中文" />
+    <item
+        android:id="@+id/menu_zh_cn"
+        android:title="簡體中文" />
+    <item
+        android:id="@+id/menu_en"
+        android:title="English" />
+    <item
+        android:id="@+id/menu_ja"
+        android:title="日本語" />
+    <item
+        android:id="@+id/menu_ko"
+        android:title="한국어" />
+    <item
+        android:id="@+id/menu_es"
+        android:title="Español" />
+    <item
+        android:id="@+id/menu_id"
+        android:title="Bahasa Indonesia" />
+    <item
+        android:id="@+id/menu_th"
+        android:title="ภาษาไทย" />
+    <item
+        android:id="@+id/menu_vi"
+        android:title="Tiếng Việt" />
+</menu>

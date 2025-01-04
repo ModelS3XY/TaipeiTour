@@ -39,19 +39,18 @@ class HomeFragment : Fragment() {
 
         viewModel.spotLiveData.observe(viewLifecycleOwner) { spot ->
             adapter = SpotAdapter(spot) {
-
                     selectSpot ->
                 findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
                 viewModel.selectedSpot.value = selectSpot
             }
 
             binding.recycler.adapter = adapter
-//            binding.recycler.invalidate()
         }
-//        viewModel.selectedSpot.observe(viewLifecycleOwner) {
-//            _ ->
-//            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
-//        }
+
+        viewModel.langLiveData.observe(viewLifecycleOwner) {
+                _ ->
+            viewModel.fetchSpot()
+        }
         viewModel.fetchSpot()
     }
 
