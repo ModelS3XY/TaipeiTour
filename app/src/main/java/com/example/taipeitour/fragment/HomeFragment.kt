@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taipeitour.R
 import com.example.taipeitour.adapter.SpotAdapter
@@ -18,7 +19,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: SpotAdapter
     private var _binding: FragmentHomeBinding? = null
 
-    private val binding get() =  _binding!!
+    private val binding get() = _binding!!
 
     val viewModel: SpotViewModel by activityViewModels()
 
@@ -37,11 +38,20 @@ class HomeFragment : Fragment() {
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.spotLiveData.observe(viewLifecycleOwner) { spot ->
-            adapter = SpotAdapter(spot)
+            adapter = SpotAdapter(spot) {
+
+                    selectSpot ->
+                findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+                viewModel.selectedSpot.value = selectSpot
+            }
 
             binding.recycler.adapter = adapter
 //            binding.recycler.invalidate()
         }
+//        viewModel.selectedSpot.observe(viewLifecycleOwner) {
+//            _ ->
+//            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+//        }
         viewModel.fetchSpot()
     }
 

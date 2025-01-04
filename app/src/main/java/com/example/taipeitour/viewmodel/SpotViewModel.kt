@@ -16,6 +16,7 @@ class SpotViewModel: ViewModel() {
 
     private val TAG = SpotViewModel::class.java.simpleName
     val spotLiveData = MutableLiveData<List<Spot>>()
+    val selectedSpot = MutableLiveData<Spot>()
 
     fun fetchSpot() {
         val client = OkHttpClient()
@@ -30,5 +31,9 @@ class SpotViewModel: ViewModel() {
             val spots = Gson().fromJson(response.body?.string(), Spots::class.java)
             spotLiveData.postValue(spots.data)
         }
+    }
+
+    fun selectedSpot(spot: Spot) {
+        selectedSpot.value = spot
     }
 }

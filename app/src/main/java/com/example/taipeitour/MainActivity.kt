@@ -1,24 +1,21 @@
 package com.example.taipeitour
 
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.taipeitour.data.Spot
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.taipeitour.databinding.ActivityMainBinding
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
     private val TAG = MainActivity::class.java.simpleName
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private val job = Job() + Dispatchers.IO
 
@@ -27,19 +24,18 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        launch {
-//            val client = OkHttpClient()
-//            val request = Request.Builder()
-//                .url("https://www.travel.taipei/open-api/zh-tw/Events/Activity?page=1")
-//                .get()
-//                .addHeader("accept", "application/json")
-//                .build()
-//            val response = client.newCall(request).execute()
-////            Log.d(TAG, "onCreate1: ${response.body?.string()}")
-//            val spot = Gson().fromJson(response.body?.string(), Spot::class.java)
-//        }
+        val navController = findNavController(R.id.fragmentContainerView)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override val coroutineContext: CoroutineContext
         get() = job
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.fragmentContainerView)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
+    }
 }

@@ -9,12 +9,11 @@ import coil3.request.placeholder
 import com.example.taipeitour.R
 import com.example.taipeitour.data.Spot
 import com.example.taipeitour.databinding.SpotRowBinding
+import com.example.taipeitour.viewmodel.SpotViewModel
 
-class SpotAdapter(var spots: List<Spot>): Adapter<SpotAdapter.SpotHolder>() {
+class SpotAdapter(var spots: List<Spot>, private val onItemClickListener: (Spot) -> Unit): Adapter<SpotAdapter.SpotHolder>() {
 
-    class SpotHolder(var view: SpotRowBinding): ViewHolder(view.root) {
-
-    }
+    class SpotHolder(var view: SpotRowBinding): ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpotHolder {
         val binding = SpotRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -32,6 +31,9 @@ class SpotAdapter(var spots: List<Spot>): Adapter<SpotAdapter.SpotHolder>() {
         holder.view.txtDesc.text = introduction
         holder.view.imgSpot.load(spots[position].images.first().src) {
             placeholder(R.drawable.img_load)
+        }
+        holder.view.root.setOnClickListener{
+            onItemClickListener(spots[position])
         }
     }
 }
