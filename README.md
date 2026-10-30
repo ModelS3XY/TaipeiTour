@@ -3,11 +3,6 @@
 An Android app that lists Taipei tourist attractions from the Taipei City Government's open travel API, with a photo gallery and details for each spot, in 9 languages.
 
 <!-- Add 2–3 screenshots here: the attraction list, the detail page, and the language menu -->
-<p>
-  <img src="docs/list.png" width="240" />
-  <img src="docs/detail.png" width="240" />
-  <img src="docs/language.png" width="240" />
-</p>
 
 ## Features
 
